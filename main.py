@@ -33,7 +33,7 @@ def main():
     usingHMA = True
     history = []
 
-    with open('wig20.csv', encoding='utf-8') as csv_file:
+    with open('LTCPrice.csv', encoding='utf-8') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=";")
         #for row in csv_reader:
         #    history.append(HistoryPoint(datetime.strptime(row[0], "%d.%m.%Y"), float(row[1]), 0, 0))
@@ -123,9 +123,9 @@ def calculateMACD_Signal(history, hma):
          for i in range(len(history)):
             history[i].macd = calculateEMA(price, i+1, 12) - calculateEMA(price, i, 26)
 
-            macd = [l.macd for l in history]
-            for i in range(len(history)):
-                history[i].signal = calculateEMA(macd, i+1, 9)
+         macd = [l.macd for l in history]
+         for i in range(len(history)):
+            history[i].signal = calculateEMA(macd, i+1, 9)
 
     return history
 
